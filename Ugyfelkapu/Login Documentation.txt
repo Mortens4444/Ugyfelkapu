@@ -1,0 +1,108 @@
+﻿https://www.scribd.com/doc/297797292/Az-ugyfelkapu-es-hivatali-kapu-kapcsolodas-m%C5%B1szaki-specifikacioja
+KIB 21. Ajánlás Az ügyfélkapu és hivatali kapu szolgáltatásaihoz történő kapcsolódás műszaki specifikációja
+
+ Szolgáltatási folyamat
+ A szolgáltatás igénybevételi folyamat minden esetben a szolgáltatás kiválasztásával indul.
+ A szolgáltatás kiválasztható a kapcsolódó szervezet rendszerében közvetlenül,
+ vagy a kormányzati portálon. A bejelentkezés és az autentikáció menete mindkét esetben ugyanaz,
+ a szakrendszer és a kormányzati portál is az ügyfélkapura irányít át bejelentkezési kéréssel.
+ Abban az esetben, ha a felhasználó már bejelentkezett
+ (a kormányzati portálon www.magyarorszag.hu, vagy más kapcsolódó szervezet szolgáltatásának
+ igénybe vétele okán), az alább ismertetett 2.-4. lépések kimaradnak, erre utal az adott pontál
+ zárójelben lévő megjegyzés is. 
+
+ 1. Kapcsolódás az ügyfélkapura:
+ A web szerver válaszában átirányítja a felhasználó  böngészőjét az ügyfélkapu webszerveréhez,
+ bejelentkezési kéréssel.
+ 
+ 2. Bejelentkezési űrlap lekérése:
+ A böngésző  elkéri a webszervertől a bejelentkezési űrlapot. (Csak abban az esetben,
+ ha eddig még nem volt bejelentkezve a felhasználó.)
+ 
+ 3. Bejelentkeztetés:
+ A webszerver kiszolgálja a böngészőt, és megjelenik az űrlap a felhasználó számára.
+ (Csak abban az esetben, ha eddig még nem volt bejelentkezve a felhasználó.)
+ 
+ 4. Bejelentkezés:
+ A bejelentkezési név és jelszó kitöltése után a felhasználó elküldi az űrlapot az
+ ügyfélkapunak, ahol megtörténik az ügyfél azonosítása.
+ (Csak abban az esetben, ha eddig még nem volt bejelentkezve a felhasználó.)
+ 
+ 5. Kapcsolódás a cél kiszolgálóhoz:
+ Amennyiben az authentikáció rendben lezajlott, az ügyfélkapu létrehoz egy egyedi tranzakciós
+ kódot a felhasználó számára, és átirányítja
+ a felhasználó böngészőjét a cél portálra, ami a „Kormányzati portálon megjelenő szolgáltató”
+ esetében azonos a kormányzati portállal,
+ míg a „Önálló portálon megjelenő  szolgáltató” esetében a szervezet saját portálja.
+ 
+ 6. Szolgáltatás igénybevétele:
+ Az ügyfélkapu a sikeres hitelesítés végeztével átirányítja a felhasználót a szervezet által
+ megadott címre, és paraméterként átadja a tranzakciós kódot, valamint a csatlakozó szervezet
+ által készített rendszer (a továbbiakban szakrendszer) által átadott target paramétert
+ változtatás nélkül. Ez utóbbi alapján tudja a szakrendszer megállapítani, hogy a felhasználó
+ melyik szolgáltatást akarja igénybe venni a szakrendszeren belül. a. Azon szakrendszer
+ esetében, ahol több szolgáltatás is rendelkezésre áll (külön címek alatt), nem lehet több
+ címet megadni, amelyre az ügyfélkapu visszairányít. Ezért készíteni kell egy oldalt, amelyre
+ az ügyfélkapu visszairányít, és a target paramétert feldolgozva eldönti, hogy a szakrendszeren
+ belül melyik szolgáltatásra kell a felhasználót tovább irányítani. Esetleg ez az
+ oldal kérheti be a szakrendszer által nyilvántartott egyedi azonosítót (amennyiben ilyen
+ képzésére, illetve használatára az adott szervezet jogosult), tehát azonosíthatja a
+ felhasználót a saját metódusa szerint.
+
+ 7. Tranzakciós kód ellenő részének kérése:
+ A „Kormányzati portálon megjelenő szolgáltató” esetében ezt elvégzi a kormányzati portál, míg az „Önálló portálon megjelenő szolgáltató”
+ esetében a szolgáltatónak kell – a központi rendszer szolgáltatását igénybe véve – erről gondoskodni.
+
+ 8. Tranzakciós kód rendben:
+ Sikeres tranzakciós kód ellenőrzés esetén a válasz tartalmazza a tranzakciós kódot, a kapcsolati kódot, az azonosított ügyfél nevét,
+ email címét, minősítését (azt, hogy az ügyfél ideiglenes vagy végleges regisztrációval rendelkezik-e).
+ 
+ 9. Szervezeti azonosítás:
+ Ha a szolgáltatást igénybevevő szervezet jogszerűen rendelkezik az ügyfél személyazonosítására alkalmas természetes személyazonosító
+ adataival (saját adatbázisból) lehetősége van arra, hogy tranzakciós kód ellenőrzése mellett az ügyfélkapu viszontazonosítás
+ szolgáltatását is igénybe vegye. Így a bejelentkezettség ellenőrzését követően az ügyfélkapu regisztrációs adatbázisában tárolt
+ személyazonosító adatokkal összehasonlítva ellenőrizheti az általa nyilvántartott/kezelt személyazonosító adatokat. (A válasz csak az
+ egyezőségre utaló IGEN, vagy NEM lehet)
+ 
+ 10. Szolgáltatás nyújtása:
+ Az ügyfélkapu elvégzi az ügyfél-azonosítást, ezt követően a szolgáltató feladata az ügyfél ügyfélkapuja minősítésének meghatározása,
+ azaz az ügyfélről esetlegesen nyilvántartott adatok (pl. képviseleti jogosultság), és a viszontazonosítás (ha szükséges) eredményének
+ igénybevételével a jogszabályi előírások alapján meghatározni a bejelentkezett ügyfél jogosultságait saját szolgáltatásaira vonatkozóan.
+ Itt lehet – szükség esetén – az ügyfélkapu ideiglenes jellegére vonatkozó információt is figyelembe venni.
+
+
+ Bejelentkezés
+
+ A bejelentkezéskor az ügyfélkapu azonosítja a felhasználót. Az azonosítás mindig a felhasználói név (amely nem törvényszerűen
+ azonos a viselt névvel vagy más nyilvántartott névvel, de lehet az is, viszont a felhasználói névvel szemben biztonsági okokból
+ követelmény az unicitás, de az soha nem kerül továbbadásra a szolgáltatásnyújtó felé) megadásával történik. A hitelesítés ebben az
+ esetben jelszó megadással történik. Ez az egyszeri bejelentkezés biztosítja a szervezetek felé a hiteles azonosítás lehetőségét.
+ Bejelentkezésre, ha a felhasználó az adott szervezet oldaláról választja ki a szolgáltatást, csak az adott szervezet adott
+ szolgáltatásának kiválasztása után kerül sor, ez adja az ügyfélkapu számára azt a működési lehetőséget, hogy a sikeres bejelentkezés
+ után tovább tudja adni a felhasználót a kiválasztott szervezet kiválasztott szolgáltatásához. A bejelentkezés a Kormányzati Portálon
+ történik.
+ Ennek szintaktikája: https://gate.gov.hu/sso/ap/ApServlet?partnerid=<....>&target=<....>
+ Teszt rendszer esetén: https://test.gate.gov.hu/sso/ap/ApServlet?partnerid=<....>&target=<....>
+ Az ügyfélkapu bejelentkeztető moduljánál (SSO) regisztráltatni kell azon szolgáltatásokat melyek eléréséhez az ügyfélkapuba történő
+ bejelentkezés szükséges (ez a csatlakozási folyamat során történik meg). Az SSO modul ezen regisztráció alapján tudja, hogy a be- és
+ kijelentkezés után milyen címre kell a felhasználót irányítani. Már itt megemlítjük, hogy a regisztrációra min-den új szolgáltató
+ csatlakozásakor csak egyszer van szükség, ilyenkor az SSO modul partner adatbázisába felvételre kerül egy új bejegyzést, amely
+ tartalmazza az új szolgáltató partnerid-ját, a két címet (ahova bejelentkezés után és ügyfélkapuból való kilépéskor irányítódik a
+ felhaszná-ló), a szolgáltató leírását, a rendszert készítő cég nevét, valamint a kapcsolattartó nevét, telefon-számát és e-mail címét.
+ A sikeres bejelentkezés utáni átirányítás során a tranzakciós kód és a target paraméter az átirá-nyító URL-ben átadásra kerül a
+ célrendszernek. A tranzakciós kódot a célrendszer URL kódolva (URL Encoding) kapja, így URL dekódolás szükséges a használata előtt.
+
+
+ Tranzakciós kód ellenőrzése
+ 
+ A tranzakciós kód ellenőrzésének a célja, hogy a csatlakozott szervezet meggyőződjön arról, hogy az adott felhasználó valóban sikeresen
+ authentikálta magát az ügyfélkapun. Sikeres bejelentkezés után az ügyfélkapu bejelentkeztető modulja átirányítja a felhasználó
+ böngészőjét a kiválasztott portál megfelelő szolgáltatására. Az átirányítás egyik paramétere a sikeres bejelentkezéskor generált, a
+ bejelentkezés idején érvényes egyedi azonosító: a tranzakciós kód.
+ Példa az átirányító linkre:
+ https://ebev.apeh.hu/loginkr.jsp?SAMLart=AAEILp%2BPcIPfl5VrMiKSZAvBZwyaav1Z1zn3nLBt4BHgRlSSliIZAxYl&TARGET=ebev
+ Biztonsági szempontból szükség van arra, hogy a megcímzett rendszer az ügyfélkapu ezt biztosító moduljával ellenőriztesse, hogy a
+ megkapott tranzakciós kód valóban érvényes bejelentkezést takar. A tranzakciós kód ellenőrzési kérésre küldött válaszüzenetben a
+ csatlakozott szervezet hozzájut az ügyfél kapcsolati kódjához is, amelynek segítségével az ügyintézési folyamat során a hivatali kapu
+ leírás 14.6. fejezetében leírt módon dokumentumokat tud küldeni az ügyfél értesítési tárhelyére. Válaszüzeneteket az ügyféltől azonban
+ nem tud fogadni.
