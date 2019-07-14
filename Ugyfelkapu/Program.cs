@@ -36,6 +36,10 @@ namespace Ugyfelkapu
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+				if (ex.InnerException != null)
+				{
+					Console.WriteLine(ex.InnerException.Message);
+				}
             }
 
             Console.ReadLine();
@@ -43,6 +47,11 @@ namespace Ugyfelkapu
 
         private static async Task<CarInfo> GetCarInfoAsync(string user, string pass, string licensePlate)
         {
+			if (licensePlate.Length != 7)
+			{
+				throw new Exception("Érvénytelen rendszám-formátum. Helyesen: WWW-123. Egyedi rendszám esetén: WWWW-12 vagy WWWWW-1");
+			}
+
             const string serviceLink = "https://kereses.magyarorszag.hu/gepjarmukereso";
             using (var httpClient = new HttpClient { BaseAddress = new Uri("https://gate.gov.hu") })
             {
